@@ -1,0 +1,164 @@
+/* Layout — hero, signature motif, section-specific arrangements */
+
+/* ---- Hero ---- */
+.hero {
+  padding-block: var(--space-8) var(--space-8);
+  border-bottom: var(--border-hairline);
+}
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+.hero__eyebrow {
+  font-size: var(--step--2);
+  font-weight: 600;
+  color: var(--color-brass-600);
+  margin-bottom: var(--space-4);
+}
+.hero h1 {
+  max-width: 14ch;
+}
+.hero__lede {
+  margin-top: var(--space-5);
+  font-size: var(--step-1);
+  color: var(--color-slate);
+  max-width: 42ch;
+}
+@media (min-width: 980px) {
+  .hero .wrap { grid-template-columns: 1.1fr 0.9fr; }
+}
+
+/* Signature motif: an organization node diagram — the one bold visual element.
+   Represents the real structure (Ministries / Departments / Digital Services)
+   rather than decoration. */
+.org-diagram {
+  width: 100%;
+  height: auto;
+}
+.org-diagram .node-line { stroke: var(--color-slate-300); stroke-width: 1.4; }
+.org-diagram .node-circle { fill: var(--color-white); stroke: var(--color-ink); stroke-width: 1.6; }
+.org-diagram .node-circle--accent { fill: var(--color-brass); stroke: var(--color-brass); }
+.org-diagram .node-circle--center { fill: var(--color-ink); stroke: var(--color-ink); }
+.org-diagram text { font-family: var(--font-body); fill: var(--color-ink); font-size: 12px; font-weight: 600; }
+.org-diagram .node-sub { fill: var(--color-slate); font-weight: 400; font-size: 10.5px; }
+
+/* ---- Org overview (About CCM as an organization) ---- */
+.overview-grid {
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .overview-grid { grid-template-columns: 1fr 1fr; }
+}
+.pillars {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: var(--space-6);
+}
+@media (min-width: 700px) {
+  .pillars { grid-template-columns: repeat(4, 1fr); }
+}
+.pillar__num {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  color: var(--color-brass);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+/* ---- Ecosystem map (digital services + related sites) ---- */
+.ecosystem-tree {
+  font-size: var(--step--1);
+  color: var(--color-slate);
+}
+.ecosystem-tree__root {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  font-size: var(--step-1);
+  padding-bottom: var(--space-4);
+  border-bottom: var(--border-hairline);
+  margin-bottom: var(--space-5);
+}
+.ecosystem-tree ul { padding-left: var(--space-6); border-left: var(--border-hairline); }
+.ecosystem-tree li { position: relative; padding: var(--space-2) 0 var(--space-2) var(--space-5); }
+.ecosystem-tree li::before {
+  content: "";
+  position: absolute; left: 0; top: 1.1em;
+  width: var(--space-4); height: 1px;
+  background: var(--color-slate-300);
+}
+.ecosystem-tree strong { color: var(--color-ink); font-weight: 600; }
+.ecosystem-tree .tag { font-size: 0.7rem; margin-left: 8px; }
+
+/* ---- Two-column content + aside pattern (About, Volunteer, Digital Services) ---- */
+.split {
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .split { grid-template-columns: 1.4fr 1fr; align-items: start; }
+}
+.aside-panel {
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  background: var(--color-parchment);
+}
+.aside-panel h3 { font-size: var(--step-1); }
+.aside-panel ul { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-4); }
+.aside-panel li { font-size: var(--step--1); color: var(--color-slate); padding-left: 1.2em; position: relative; }
+.aside-panel li::before {
+  content: "";
+  position: absolute; left: 0; top: 0.55em;
+  width: 6px; height: 6px;
+  border: 1.5px solid var(--color-brass);
+  border-radius: 50%;
+}
+
+/* ---- Stats / featured strip ---- */
+.feature-strip {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* ---- Home page section header row with link ---- */
+.section-head-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+.section-head-row .section-head { margin-bottom: 0; }
+
+/* ---- CTA banner ---- */
+.cta-banner {
+  text-align: left;
+}
+.cta-banner .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+.cta-banner h2 { max-width: 20ch; }
+
+/* ---- Contact ---- */
+.contact-grid {
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr 1fr; }
+}
+.contact-block + .contact-block { margin-top: var(--space-6); }
+.contact-block h4 { font-size: var(--step-0); margin-bottom: var(--space-2); }
+.contact-block a { color: var(--color-brass-600); font-weight: 600; }

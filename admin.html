@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Compassion Church Ministries Portal</title>
+<meta name="description" content="CCM portal administration workspace.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body data-page="admin">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div id="site-header"></div>
+
+<main id="main">
+  <div class="page-intro admin-intro">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="index.html">Home</a> / Admin</p>
+      <div class="admin-heading">
+        <div>
+          <p class="section-label">Portal workspace</p>
+          <h1>Keep CCM current</h1>
+          <p class="hero__lede">A simple control room for maintenance notices, events, and announcements.</p>
+        </div>
+        <span class="admin-status"><span class="status-dot"></span> Local draft mode</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section admin-section">
+    <div class="wrap">
+      <div class="admin-notice" role="note">
+        <strong>Static-site workspace.</strong>
+        Changes here are saved only in this browser. Publishing to all visitors will require a CMS, database, or deployment workflow later.
+      </div>
+
+      <div class="admin-layout">
+        <aside class="admin-sidebar" aria-label="Admin sections">
+          <button class="admin-tab is-active" type="button" data-tab="overview">Overview</button>
+          <button class="admin-tab" type="button" data-tab="events">Events</button>
+          <button class="admin-tab" type="button" data-tab="updates">Updates</button>
+          <button class="admin-tab" type="button" data-tab="maintenance">Maintenance</button>
+          <button class="admin-tab" type="button" data-tab="content">Site content</button>
+        </aside>
+
+        <div class="admin-content">
+          <section class="admin-panel is-visible" data-panel="overview">
+            <div class="panel-heading">
+              <div>
+                <p class="section-label">At a glance</p>
+                <h2>Portal overview</h2>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" id="export-admin">Export draft data</button>
+            </div>
+            <div class="admin-stats" id="admin-stats"></div>
+            <div class="admin-two-column">
+              <div class="admin-list-block">
+                <h3>Upcoming events</h3>
+                <div id="overview-events" class="admin-list"></div>
+              </div>
+              <div class="admin-list-block">
+                <h3>Recent updates</h3>
+                <div id="overview-updates" class="admin-list"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-panel" data-panel="events" hidden>
+            <div class="panel-heading">
+              <div>
+                <p class="section-label">Calendar</p>
+                <h2>Manage events</h2>
+              </div>
+            </div>
+            <form id="event-form" class="admin-form">
+              <div class="admin-form-grid">
+                <div class="field"><label for="event-title">Event title</label><input id="event-title" name="title" required></div>
+                <div class="field"><label for="event-date">Date</label><input id="event-date" name="date" type="date" required></div>
+                <div class="field"><label for="event-time">Time</label><input id="event-time" name="time" placeholder="6:00 PM" required></div>
+                <div class="field"><label for="event-category">Category</label><select id="event-category" name="category"><option>Organization-Wide</option><option>Ministry Event</option><option>Training</option><option>Volunteer</option></select></div>
+                <div class="field"><label for="event-location">Location</label><input id="event-location" name="location" required></div>
+                <div class="field"><label for="event-ministry">Ministry</label><select id="event-ministry" name="ministryId"><option value="">All ministries</option></select></div>
+              </div>
+              <div class="field"><label for="event-description">Description</label><textarea id="event-description" name="description" rows="3" required></textarea></div>
+              <label class="check-field"><input type="checkbox" name="registration"> Registration or volunteer interest is required</label>
+              <button type="submit" class="btn btn-primary">Save event draft</button>
+            </form>
+            <div class="admin-list-block admin-list-block--spaced"><h3>Draft events</h3><div id="event-drafts" class="admin-list"></div></div>
+          </section>
+
+          <section class="admin-panel" data-panel="updates" hidden>
+            <div class="panel-heading">
+              <div><p class="section-label">News &amp; announcements</p><h2>Publish an update draft</h2></div>
+            </div>
+            <form id="update-form" class="admin-form">
+              <div class="admin-form-grid">
+                <div class="field"><label for="update-title">Headline</label><input id="update-title" name="title" required></div>
+                <div class="field"><label for="update-category">Category</label><select id="update-category" name="category"><option>Announcement</option><option>Volunteer</option><option>Ministry News</option><option>Operations</option></select></div>
+              </div>
+              <div class="field"><label for="update-excerpt">Short update</label><textarea id="update-excerpt" name="excerpt" rows="4" required></textarea></div>
+              <label class="check-field"><input type="checkbox" name="featured"> Feature this update on the homepage</label>
+              <button type="submit" class="btn btn-primary">Save update draft</button>
+            </form>
+            <div class="admin-list-block admin-list-block--spaced"><h3>Draft updates</h3><div id="update-drafts" class="admin-list"></div></div>
+          </section>
+
+          <section class="admin-panel" data-panel="maintenance" hidden>
+            <div class="panel-heading">
+              <div><p class="section-label">Availability</p><h2>Maintenance mode</h2></div>
+              <span id="maintenance-badge" class="status-badge">Preview only</span>
+            </div>
+            <div class="maintenance-card">
+              <label class="toggle-row"><input type="checkbox" id="maintenance-toggle"><span><strong>Show maintenance status</strong><small>Records the intended state for the future publishing system.</small></span></label>
+              <div class="field"><label for="maintenance-message">Maintenance message</label><textarea id="maintenance-message" rows="4">The CCM portal is receiving a few updates. Please check back soon.</textarea></div>
+              <button type="button" class="btn btn-primary" id="save-maintenance">Save maintenance draft</button>
+              <p class="field-hint" id="maintenance-note" aria-live="polite"></p>
+            </div>
+          </section>
+
+          <section class="admin-panel" data-panel="content" hidden>
+            <div class="panel-heading">
+              <div><p class="section-label">Content map</p><h2>Site content status</h2></div>
+            </div>
+            <div class="content-status-list">
+              <div><span><strong>Ministries</strong><small>Directory content in JavaScript data</small></span><span class="status-badge status-badge--ready">Ready</span></div>
+              <div><span><strong>Events</strong><small>Illustrative static data until a live feed is connected</small></span><span class="status-badge">Static</span></div>
+              <div><span><strong>News</strong><small>Illustrative static data until a CMS is connected</small></span><span class="status-badge">Static</span></div>
+              <div><span><strong>Volunteer form</strong><small>Microsoft Forms embed is live on the public page</small></span><span class="status-badge status-badge--ready">Connected</span></div>
+              <div><span><strong>Authentication</strong><small>Microsoft Entra integration has not been enabled</small></span><span class="status-badge">Planned</span></div>
+            </div>
+            <div class="admin-notice admin-notice--muted"><strong>Next production step:</strong> connect these draft records to Azure Static Web Apps, a CMS, or an API so edits become visible to every visitor.</div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/config.js"></script>
+<script src="js/data/nav.js"></script>
+<script src="js/data/ministries.js"></script>
+<script src="js/data/departments.js"></script>
+<script src="js/data/leadership.js"></script>
+<script src="js/data/events.js"></script>
+<script src="js/data/news.js"></script>
+<script src="js/data/resources.js"></script>
+<script src="js/data/digital-services.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/admin-auth.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
