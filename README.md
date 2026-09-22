@@ -23,6 +23,16 @@ python3 -m http.server 8080
 
 Any static file server works (`npx serve`, VS Code's Live Server extension, etc.).
 
+## Publishing with GitHub Pages
+
+The public static portal deploys through `.github/workflows/pages.yml`. In the GitHub repository,
+open **Settings → Pages** and set **Source** to **GitHub Actions**. A push to `main` then publishes
+the site without a build step. GitHub will show the live URL under **Settings → Pages**.
+
+The custom domain `portal.mycompassionchurch.org` can be added there after the default Pages URL
+works. GitHub Pages hosts the public static site; it does not provide Azure Easy Auth, so the admin
+workspace must remain separately protected before it is used for real administrative data.
+
 ## Project structure
 
 ```
